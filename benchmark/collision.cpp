@@ -5,8 +5,6 @@
 #include <random>
 #include <unordered_set>
 
-#include <boost/math/special_functions/gamma.hpp>
-
 #include "ziggurat_normal.hpp"
 #include "etf_normal.hpp"
 
@@ -126,10 +124,6 @@ int main() {
     std::cout << "Statistics for inversion sampling (theoretical)." << std::endl;
     experiment.run(min_dim, max_dim, repeat,
         [&]() { return etf::generate_random_real<RealType, W>(rng); });
-
-    std::cout << "Statistics for polar method." << std::endl;
-    experiment.run(min_dim, max_dim, repeat,
-        [&]() { return cdf(polar_dist(rng)); });
 
     std::cout << "Statistics for ziggurat." << std::endl;
     experiment.run(min_dim, max_dim, repeat,
